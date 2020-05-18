@@ -12,7 +12,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 options = webdriver.ChromeOptions()
 options.add_argument('user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15"')
-options.add_argument('--headless')#不显示窗口
+#options.add_argument('--headless')#不显示窗口
 prefs = {"profile.managed_default_content_settings.images": 2}
 options.add_experimental_option("prefs", prefs)#不加载图片
 browser=webdriver.Chrome(chrome_options=options)
@@ -55,7 +55,8 @@ def download(url):
             except:
                 a=1
         browser.execute_script('window.scrollTo(0,10000000)')
-        if cnt>=10:
+        print(cnt)
+        if cnt>=1000:#指定下载张数
             break
     download_Pic(image_list)
     print('total:%d'%(cnt))
@@ -64,7 +65,6 @@ if __name__ == '__main__':
     try:
         os.mkdir("file") 
         os.chdir('file')
-        for i in range(1,2):
-            download('https://www.zhihu.com/question/384408291')
+        download('https://www.zhihu.com/question/384408291')#指定链接
     finally:
         browser.close()

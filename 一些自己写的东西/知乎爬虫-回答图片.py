@@ -47,7 +47,6 @@ def download(url):
                 for item2 in list2:
                     try:
                         img_url = item2.find('img').get('src')
-                        print(img_url)
                         if img_url not in image_list:
                             image_list.append(img_url)
                             cnt=cnt+1
